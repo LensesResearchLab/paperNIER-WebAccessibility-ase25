@@ -24,7 +24,7 @@
 J.~Ara, C.~Sik-Lanyi, A.~Kelemen, and T.~Guzsvinecz, ``An inclusive framework for automated web content accessibility evaluation,'' \emph{Universal Access in the Information Society}, pp. 1--27, 2024.
 
 \bibitem{who2023vision}
-{World Health Organization}, ``World report on vision,'' \url{https://www.who.int}, 2023.
+{World Health Organization (WHO)}, ``World report on vision,'' \url{https://www.who.int}, 2023.
 
 \bibitem{DANE2022}
 \BIBentryALTinterwordspacing
@@ -32,7 +32,7 @@ J.~Ara, C.~Sik-Lanyi, A.~Kelemen, and T.~Guzsvinecz, ``An inclusive framework fo
 \BIBentrySTDinterwordspacing
 
 \bibitem{cdc2025disabilities}
-U.~C. for Disease~Control and Prevention, ``Disability impacts all of us infographic,'' \url{https://www.cdc.gov/disability-and-health/articles-documents/disability-impacts-all-of-us-infographic.html}, 2025.
+{US Centers for Disease Control and Prevention (CDC)}, ``Disability impacts all of us infographic,'' \url{https://www.cdc.gov/disability-and-health/articles-documents/disability-impacts-all-of-us-infographic.html}, 2025.
 
 \bibitem{webaimsurvey2025}
 \BIBentryALTinterwordspacing
@@ -40,12 +40,13 @@ U.~C. for Disease~Control and Prevention, ``Disability impacts all of us infogra
 \BIBentrySTDinterwordspacing
 
 \bibitem{wobbrock2021assets}
-J.~O. Wobbrock \emph{et~al.}, ``Understanding screen-reader users’ experiences with online data visualizations,'' in \emph{ASSETS '21: The 23rd International ACM SIGACCESS Conference on Computers and Accessibility}, 2021, p.~16.
+J.~O. Wobbrock \emph{et~al.}, ``Understanding screen-reader users' experiences with online data visualizations,'' in \emph{ASSETS '21: The 23rd International ACM SIGACCESS Conference on Computers and Accessibility}, 2021, p.~16.
 
-\bibitem{w3c_accessibility_tools_2025}
-\BIBentryALTinterwordspacing
-{W3C Web Accessibility Initiative}, ``Accessibility evaluation tools list,'' 2025, accessed: 2025-06-24. [Online]. Available: \url{https://www.w3.org/WAI/test-eval/tools/}
-\BIBentrySTDinterwordspacing
+\bibitem{webaim_wave_2025}
+{WebAIM}, ``Wave web accessibility evaluation tools,'' \url{https://wave.webaim.org/}, 2025, suite of tools (browser extension, API, AIM report) for WCAG/Section 508 evaluation.
+
+\bibitem{ibm_accessibility_checker_2025}
+{IBM}, ``accessibility-checker,'' NPM module, 2025, node.js automated accessibility testing tool (Puppeteer, Selenium, etc.).
 
 \bibitem{todorov2022accessibility}
 T.~Todorov, G.~Bogdanova, and M.~Todorova-Ekmekci, ``Accessibility of bulgarian regional museums websites,'' \emph{International Journal of Advanced Computer Science and Applications}, vol.~13, no.~3, 2022.
@@ -89,10 +90,10 @@ I.~Abu~Doush, K.~Sultan, M.~A. Al-Betar, Z.~Almeraj, Z.~A.~A. Alyasseri, and M.~
 ------, ``European accessibility act: Ultimate guide,'' \url{https://www.audioeye.com/post/eu-digital-accessibility/}, 2025.
 
 \bibitem{accessibleEU2025}
-A.~Centre, ``The eaa comes into effect in june 2025,'' \url{https://accessible-eu-centre.ec.europa.eu/content-corner/news/eaa-comes-effect-june-2025-are-you-ready-2025-01-31_en}, 2025.
+{AccessibleEU Centre}, ``The eaa comes into effect in june 2025,'' \url{https://accessible-eu-centre.ec.europa.eu/content-corner/news/eaa-comes-effect-june-2025-are-you-ready-2025-01-31_en}, 2025.
 
 \bibitem{accessdesign2025}
-A.~Studio, ``Beyond resolutions: Why 2025 is the year to invest in website accessibility,'' \url{https://accessdesignstudio.com/beyond-resolutions-why-2025-is-the-year-to-invest-in-website-accessibility/}, 2025.
+{AccessDesign Studio}, ``Beyond resolutions: Why 2025 is the year to invest in website accessibility,'' \url{https://accessdesignstudio.com/beyond-resolutions-why-2025-is-the-year-to-invest-in-website-accessibility/}, 2025.
 
 \bibitem{w3c_WCAG22}
 \BIBentryALTinterwordspacing

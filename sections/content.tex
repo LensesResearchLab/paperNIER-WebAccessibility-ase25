@@ -1,6 +1,7 @@
 % !TEX root = main.tex
 
 \section{Motivation}
+%! We are missing a paragraph mentioning what is lacking in the existent tools, what is the research gap that we found ?
 
 The widespread adoption of the web has emphasized the importance of ensuring that online content is accessible to everyone, including individuals with various disabilities\cite{abu2023web}. Despite this, less than 4\% of the top one million websites are fully accessible. Over 96\% contain detectable \ac{WCAG} failures, with an average of 51 errors per page \cite{webaimmillion2025}. Common issues include missing alt text (present on 56\% of home pages), low contrast, and poor form labeling \cite{audioeye2024}.
 
@@ -13,7 +14,7 @@ Although \ac{WCAG} articulate extensive criteria for inclusive design \cite{w3c_
 
 \section{Automated Testing}
 
-Dynamic testing can help developers and stakeholders verify and validate that running software is working as expected. In this case, automated testing is the enabler for faster, more reliable and overall optimized testing. Automated testing leveraged by machine learning and \ac{AI} are increasingly becoming more popular and sophisticated, therefore using them in this scenario is a big step forward for ensuring accessibility. %aqui seria bueno poner una referencia de TSDL
+Dynamic testing can help developers and stakeholders verify and validate that running software is working as expected. In this case, automated testing is the enabler for faster, more reliable and overall optimized testing. Automated testing leveraged by machine learning and \ac{AI} are increasingly becoming more popular and sophisticated, therefore using them in this scenario is a big step forward for ensuring accessibility. %*aqui seria bueno poner una referencia de TSDL
 
 Intelligent agents can interact with web content without access to the underlying code, relying instead on the same content the final user is interacting with\cite{lanham2025ai, wang2024survey, lu2025uxagent}. They can also be adapted based on feedback, and can process rich multimodal inputs, such as screenshots and screen reader text, enabling them to reason about both the visual layout and the spoken feedback of the user interface simultaneously. They are also able to use different interaction techniques, like keyboard only, mouse only, etc. This integrated perception allows for a more comprehensive assessment of accessibility issues that may arise during real user interactions. Finally, LLM agents excel at open-ended reasoning and can provide qualitative insights, alongside quantitative logs. However, they require careful prompting and can be slower or less predictable.
 
@@ -22,7 +23,7 @@ Intelligent agents can interact with web content without access to the underlyin
 
 First, we aim to explore the use of perceptual filters and multimodal inputs, such as applying blur to simulate different impairments; while also using screen reader outputs, to approximate the experience of real world users. 
 
-Additionally, we will analyze whether certain UI elements become inaccessible or difficult to perceive under these simulated conditions, and investigate if common layout structures or design patterns can fail in these situations. Through this approach, we seek to identify not only the direct effects of visual filters on usability, but also the broader structural and behavioral implications for accessible web design.
+Additionally, we will analyze whether certain \ac{UI} elements become inaccessible or difficult to perceive under these simulated conditions, and investigate if common layout structures or design patterns can fail in these situations. Through this approach, we seek to identify not only the direct effects of visual filters on usability, but also the broader structural and behavioral implications for accessible web design.
 
 \section{System design}
 \subsection{Visual Filtering}
@@ -78,7 +79,7 @@ For example, one scenario may involve an \ac{AI} agent attempting to find and cl
 Each testing task needs to be defined in advance. This can be done either with a script or using natural language to define a goal. Then, the agent will execute said task in a closed loop that has a completion or failure condition. The loop can be structured in this way
 
 \begin{enumerate}
-    \item Perception: Capture the current UI state. This includes a screenshot of the page and the latest screen-reader output. Optionally also collect DOM/ARIA info for elements in focus. 
+    \item Perception: Capture the current \ac{UI} state. This includes a screenshot of the page and the latest screen-reader output. Optionally also collect DOM/ARIA info for elements in focus. 
     \item Decision: Use the agent's strategy to choose the next action. An LLM-based agent might generate a plan (e.g. “click the Login button”) from the task description, and then a rule-based agent would follow a predetermined script (e.g. “press Tab until username field is focused, then type”).
     \item Action: Execute the chosen step.
     \item Measure: Record relevant outputs. Log the agent's action, the resulting new screen-reader output, and any state changes. Check if the task goal is reached. If not, loop back with the new perception.
@@ -88,7 +89,7 @@ Each testing task needs to be defined in advance. This can be done either with a
 
 \subsection{Metrics and Analysis}
 
-After execution is complete, some of the metrics we propose that the system displays are both classic usability and accessibility-specific. These include the agent's task success rate, efficiency (measured by completion time or number of actions), and the frequency of interaction errors such as missed clicks or incorrect actions that require backtracking. We also include the consistency between screen reader output and the visible UI, flagging any mismatches between spoken labels and on-screen text or roles. Visual robustness can also be examined by analyzing the webpage before the filter, discovering layout faults like overlapping or off-screen elements, among others. Heuristic checks are performed during testing, such as verifying that text scales appropriately in high-contrast or large-text modes and monitoring for navigation loops. Throughout the process, we aggregate logs of the agent's actions and screen reader output for offline analysis, enabling manual review or further explanation by the agent. By comparing these metrics across different simulated conditions, we can quantify the impact of visual impairments on usability and identify both layout and semantic accessibility issues.
+After execution is complete, some of the metrics we propose that the system displays are both classic usability and accessibility-specific. These include the agent's task success rate, efficiency (measured by completion time or number of actions), and the frequency of interaction errors such as missed clicks or incorrect actions that require backtracking. We also include the consistency between screen reader output and the visible \ac{UI}, flagging any mismatches between spoken labels and on-screen text or roles. Visual robustness can also be examined by analyzing the webpage before the filter, discovering layout faults like overlapping or off-screen elements, among others. Heuristic checks are performed during testing, such as verifying that text scales appropriately in high-contrast or large-text modes and monitoring for navigation loops. Throughout the process, we aggregate logs of the agent's actions and screen reader output for offline analysis, enabling manual review or further explanation by the agent. By comparing these metrics across different simulated conditions, we can quantify the impact of visual impairments on usability and identify both layout and semantic accessibility issues.
 
 % \subsection{Ethical Considerations}
 
