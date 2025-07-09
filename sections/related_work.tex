@@ -1,11 +1,12 @@
 % !TEX root = main.tex
 
 \section{Related Work}
+%? aquí se hace un cambio de la forma en la que se hacen las citas
 
 \subsection{Web Accessibility compliance}
 
 Conventional web accessibility assessments primarily rely on static checkers that verify compliance with \ac{WCAG} criteria by inspecting HTML and CSS structures. 
-Tools such as WAVE by WebAIM\cite{webaim_wave_2025} and IBM's NPM accessibility-checker\cite{ibm_accessibility_checker_2025} exemplify this approach.
+Tools such as WAVE by WebAIM\cite{webaim_wave_2025} and IBM's NPM accessibility-checker\cite{ibm_accessibility_checker_2025} exemplify this approach. %? aquí se separan las citas
 However, several studies have revealed significant limitations in these tools, noting they often lack semantic awareness and fail to consider user perspectives, leading to incomplete or misleading results \cite{ara2024inclusive}. 
 For instance, Todorov et al. evaluated Bulgarian museum websites uncovered widespread accessibility failures despite technical correctness \cite{todorov2022accessibility}. 
 Similarly, Inal et al. conducted a study of Norwegian municipal websites and found that although legislation mandated \ac{WCAG} compliance, issues such as low-quality alternative text persisted\cite{inal2025does}.
@@ -22,10 +23,10 @@ These efforts demonstrate growing awareness of the limitations of rule-based sys
 \subsection{Autonomous AI agents}
 
 The use of autonomous \ac{AI} agents to simulate user interaction with web interfaces has also been explored. Lu et al. \cite{lu2025uxagent} introduce UXAgent; a notable system that uses LLM agents to mimic thousands of diverse user personas in web usability studies. The agents interact with live websites via browser automation, providing qualitative and quantitative feedback that supports iterative UX design. 
-%! This seems very promising, what are we proposing that they do not have ?
+
 Complementing this, a GitHub Copilot extension that proactively embeds accessibility guidance into the coding workflow was unveiled by Mowar et al. \cite{mowar2025codea11y}. Their study shows how \ac{AI} assistants can suggest accessible \ac{UI} code, highlight missing attributes, and prompt manual verification during development.
 
-Another recent advancement in this area is AXNav by Taeb et al. \cite{taeb2024axnav}, a system that interprets accessibility test instructions written in natural language and executes them on remote cloud devices using an LLM-based multiagent planner. This approach demonstrates how LLM-driven agents can automate complex accessibility evaluations and provide actionable, context-rich feedback for developers.
+Another recent advancement in this area is AXNav by Taeb et al. \cite{taeb2024axnav}, a system that interprets mobile accessibility test instructions written in natural language and executes them on remote cloud devices using an LLM-based multiagent planner. This approach demonstrates how LLM-driven agents can automate complex evaluations and provide actionable, context-rich feedback for developers.
 
 Multimodal agents that adaptively present content based on user needs, transforming visual content into speech or simplified visuals for users with auditory or visual processing disorders were also proposed by Rajagopal et al. \cite{rajagopal2023design}. While not focused on web testing, their work shows how agents can model disability-specific interactions across modalities.
 
