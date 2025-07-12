@@ -1,32 +1,30 @@
 % !TEX root = main.tex
 
 \section{Related Work}
-%? aquí se hace un cambio de la forma en la que se hacen las citas
+\subsection{Web a11y compliance}
 
-\subsection{Web Accessibility compliance}
+Conventional web \ac{a11y} assessments primarily rely on static checkers that verify compliance with \ac{WCAG} criteria by inspecting HTML and CSS structures. Tools such as WAVE by WebAIM\cite{webaim_wave_2025} and IBM's NPM accessibility-checker\cite{ibm_accessibility_checker_2025} exemplify this approach. However, several studies have revealed significant limitations in these tools, noting they often lack semantic awareness and fail to consider user perspectives, leading to incomplete or misleading results \cite{ara2024inclusive}. 
 
-Conventional web accessibility assessments primarily rely on static checkers that verify compliance with \ac{WCAG} criteria by inspecting HTML and CSS structures. 
-Tools such as WAVE by WebAIM\cite{webaim_wave_2025} and IBM's NPM accessibility-checker\cite{ibm_accessibility_checker_2025} exemplify this approach. %? aquí se separan las citas
-However, several studies have revealed significant limitations in these tools, noting they often lack semantic awareness and fail to consider user perspectives, leading to incomplete or misleading results \cite{ara2024inclusive}. 
-For instance, Todorov et al. evaluated Bulgarian museum websites uncovered widespread accessibility failures despite technical correctness \cite{todorov2022accessibility}. 
-Similarly, Inal et al. conducted a study of Norwegian municipal websites and found that although legislation mandated \ac{WCAG} compliance, issues such as low-quality alternative text persisted\cite{inal2025does}.
+For instance, Todorov et al. evaluated Bulgarian museum websites uncovered widespread \ac{a11y} failures despite technical correctness \cite{todorov2022accessibility}. Similarly, Inal et al. conducted a study of Norwegian municipal websites and found that although legislation mandated \ac{WCAG} compliance, issues such as low-quality alternative text persisted.
+Chiou et al. further observed that many common web \ac{a11y} issues arise in responsive sites during resizing, highlighting the importance of evaluating \ac{a11y} across different device viewports\cite{chiou2024automatically}.
 
-Complimentarily, \ac{WCAG} conformance varies by level, from A (lower level) to AAA (higher level), meaning that a website labeled as “compliant” may still fall short of more stringent and specific accessibility standards. These findings underscore the need for real-time evaluations that reflect how visually impaired users interact with web interfaces. 
-While automated tools are useful for early feedback, they are unable to identify all critical accessibility, functionality, and usability issues affecting this population \cite{todorov2022accessibility}.
+Complimentarily, \ac{WCAG} conformance varies by level, from A (lower) to AAA (higher), meaning that a website labeled as “compliant” may still fall short of more stringent and specific \ac{a11y} standards. These findings underscore the need for real-time evaluations that reflect how visually impaired users interact with web interfaces. 
+While automated tools are useful for early feedback, they are unable to identify all critical \ac{a11y}, functionality, and usability issues affecting this population \cite{todorov2022accessibility}.
 
-\subsection{AI for Web Accessibility Testing}
+\subsection{Automated a11y Testing}
 
-Recent work has proposed hybrid testing frameworks that attempt to improve automated evaluation by combining guidelines with heuristic or \ac{AI} enhanced methods. Watanabe et al. \cite{watanabe2024accessibility} demonstrate machine learning can be used to identify ARIA landmarks in web applications, highlighting the potential of classification models to infer structure when developers omit key accessibility tags. 
-Likewise, various different types of machine learning models can be trained to automatically identify and correct accessibility problems for helping websites follow guidelines, by looking at the source code and proposing viable solutions\cite{ramineni2024leveraging, kuszczynski2023comparative}. 
-These efforts demonstrate growing awareness of the limitations of rule-based systems, but rely primarily on source code analysis.
+Recent studies introduce hybrid frameworks that combine guidelines with heuristic, automated, or AI-driven methods to improve a11y evaluation. Watanabe et al.~\cite{watanabe2024accessibility} show that machine learning can detect ARIA landmarks in web apps, revealing how classifiers may infer structure when key \ac{a11y} tags are missing. Similarly, models have been used to identify and remediate \ac{a11y} issues, helping sites align with accessibility standards. Some approaches analyze source code to suggest fixes~\cite{ramineni2024leveraging, kuszczynski2023comparative}, while others operate on rendered pages using prompt-based methods~\cite{he2025enhancing}. Mehralian et al.~\cite{mehralian2025automated} propose a rule-based system for testing dynamic content in Android apps, and Tafreshipour et al.~\cite{tafreshipour2024ma11y} show that mutation testing can uncover additional errors by exploring app states and applying accessibility rules. These efforts reflect growing recognition of the limits of static, rule-based tools, while still relying on source code analysis, not simulating user behavior.
+
 
 \subsection{Autonomous AI agents}
 
 The use of autonomous \ac{AI} agents to simulate user interaction with web interfaces has also been explored. Lu et al. \cite{lu2025uxagent} introduce UXAgent; a notable system that uses LLM agents to mimic thousands of diverse user personas in web usability studies. The agents interact with live websites via browser automation, providing qualitative and quantitative feedback that supports iterative UX design. 
 
-Complementing this, a GitHub Copilot extension that proactively embeds accessibility guidance into the coding workflow was unveiled by Mowar et al. \cite{mowar2025codea11y}. Their study shows how \ac{AI} assistants can suggest accessible \ac{UI} code, highlight missing attributes, and prompt manual verification during development.
+Complementing this, a GitHub Copilot extension that proactively embeds \ac{a11y} guidance into the coding workflow was unveiled by Mowar et al. \cite{mowar2025codea11y}. Their study shows how \ac{AI} assistants can suggest accessible \ac{UI} code, highlight missing attributes, and prompt manual verification during development.
 
-Another recent advancement in this area is AXNav by Taeb et al. \cite{taeb2024axnav}, a system that interprets mobile accessibility test instructions written in natural language and executes them on remote cloud devices using an LLM-based multiagent planner. This approach demonstrates how LLM-driven agents can automate complex evaluations and provide actionable, context-rich feedback for developers.
+While not strictly agent-based, Zhong et al. \cite{zhong2025screenaudit} leveraged large language models to identify discrepancies between screen reader outputs, providing a novel approach to detecting accessibility errors.
+
+Another recent advancement in this area is AXNav by Taeb et al. \cite{taeb2024axnav}, a system that interprets mobile \ac{a11y} test instructions written in natural language and executes them on remote cloud devices using an LLM-based multiagent planner. This approach demonstrates how LLM-driven agents can automate complex evaluations and provide actionable, context-rich feedback for developers.
 
 Multimodal agents that adaptively present content based on user needs, transforming visual content into speech or simplified visuals for users with auditory or visual processing disorders were also proposed by Rajagopal et al. \cite{rajagopal2023design}. While not focused on web testing, their work shows how agents can model disability-specific interactions across modalities.
 
