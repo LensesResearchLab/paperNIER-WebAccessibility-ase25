@@ -1,9 +1,9 @@
-# Paper Title
+# Autonomous Agents for Accessibility: Simulating Visual Impairments in Web Interfaces
 
-- **Venue:** [<venue>](<venueURL>) 
+- **Venue:** [ASE 2025](https://conf.researchr.org/home/ase-2025) 
 
 ## Description
-This repo contains the latex structure for the **<Paper Title>** <Paper Type>.
+This repo contains the latex structure for the **Autonomous Agents for Accessibility: Simulating Visual Impairments in Web Interfaces**'s NIER (New Ideas and Emerging Results) track.
 
 
 ## Structure 
