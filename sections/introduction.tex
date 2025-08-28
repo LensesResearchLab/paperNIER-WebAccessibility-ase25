@@ -1,5 +1,4 @@
 % !TEX root = main.tex
-
 \section{Introduction}
 
 Web accessibility is central to inclusive software design, yet existing evaluation methods predominantly focus on code conformance, as illustrated by \ac{WCAG} rule checks, often overlooking how individuals with disabilities actually navigate and perceive interfaces in practice~\cite{ara2024inclusive}. Although these tools are useful for guidance and a first approach, they can be unable to thoroughly assess how these impairments affect real-time usability, task completion, or perception of interface elements. While often ignoring behavioral context; they do not simulate navigation, focus order, or sequential interaction flows that can significantly impact accessibility. Individuals with disabilities have diverse needs and experiences, many of which may not be fully addressed by level-A \ac{WCAG} guidelines alone.
@@ -8,6 +7,30 @@ Although the access to information is a human right, the urgency of dynamic and 
 
 We explore the possibility of approaching accessibility testing using autonomous \ac{AI} agents capable of interacting with websites while being exposed to simulated visual impairments. These agents are prompted with specific user tasks (e.g., locating a button, submitting a form) and attempt to complete them. The agents can also integrate outputs from assistive technologies, for example, capturing a screen reader's textual narration. 
 
-This multi-modal input allows the agent to simulate how a user with various levels of visual impairment (glaucoma, cataracts, myopia or low vision, among others) interacts with content, opening the door for dynamic automated testing other existing tools might be unable to uncover. For instance, detecting unuseful alt text, mislabeled controls or mismatches between rendered content and screen reader output. 
+This multi-modal input allows the agent to simulate how a user with various levels of visual impairment interacts with content, opening the door for dynamic automated testing other existing tools might be unable to uncover. For instance, detecting unuseful alt text, mislabeled controls or mismatches between rendered content and screen reader output. 
 
 This paper outlines our motivation, proposed approach, poses future evaluation research questions, and discusses implementation considerations for such a system.
+
+\section{Motivation}
+
+The widespread adoption of the web has emphasized the importance of ensuring that online content is accessible to everyone, including individuals with various disabilities\cite{abu2023web}. Despite this, less than 4\% of the top one million websites are fully accessible. Over 96\% contain detectable \ac{WCAG} failures, with an average of 51 errors per page \cite{webaimmillion2025}. Common issues include missing alt text (present on 56\% of home pages), low contrast, and poor form labeling \cite{audioeye2024}.
+
+On the other hand, rigorous testing is integral to ensuring reliability of web applications. For example, usability testing that involves having real users interacting with a live web application, allows for the identification of issues in action, enables for iterative feedback and a more realistic assessment of how they might experience the interface. Effective testing improves satisfaction, avoids rework, and ensures genuine inclusive design \cite{accessdesign2025}. 
+
+% * Explain the hardship that is finding users to perform manual or using testing. This last one is not directly mentioned in the paper submitted, and it should be.
+Nevertheless, practitioners often find manual testing on people with impairments especially challenging, due to the difficulty of recruiting participants, communication, travelling to experiment location, among others\cite{xu2025conducting}.
+
+Recent research highlights that most applications of \ac{AI} in web accessibility focus on generating alternative text for images, automating compliance checks, suggesting corrections, and creating alternative interfaces to improve access\cite{vera2025towards}. However, these approaches remain largely centered on white-box analysis and do not fully address the challenges of evaluating accessibility from the perspective of real user interaction. 
+
+% TODO There is no clear explanation as to how this proposed research differs from previous research that has performed dynamic testing over static data.
+% ? I thought this paragraph was doing that?
+
+While recent advances have demonstrated the potential of autonomous agents for usability testing\cite{lu2025uxagent}, mobile accessibility feature testing\cite{taeb2024axnav} and accessibility testing\cite{zhong2025screenaudit}, to our knowledge, these agents have not yet been applied to web accessibility evaluation in a multi-modal decision-based way. Bridging this gap offers the opportunity to deliver scalable, repeatable, and realistic assessments of how users with disabilities interact with web interfaces, potentially enhancing the detection and remediation of accessibility issues and making the evaluation process more efficient and comprehensive.
+
+
+
+\section{Objectives}
+
+First, we aim to explore the use of perceptual filters and multimodal inputs, specifically applying blur to simulate different impairments; while also using screen reader outputs, to approximate the experience of real world users. 
+
+Additionally, we will analyze whether certain \ac{UI} elements become inaccessible or difficult to perceive under these simulated conditions, and investigate if common layout structures or design patterns can fail in these situations. Through this approach, we seek to identify not only the direct effects of visual filters on usability, but also the broader structural and behavioral implications for accessible web design.

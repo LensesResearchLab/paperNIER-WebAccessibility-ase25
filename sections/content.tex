@@ -1,30 +1,5 @@
 % !TEX root = main.tex
 
-\section{Motivation}
-
-The widespread adoption of the web has emphasized the importance of ensuring that online content is accessible to everyone, including individuals with various disabilities\cite{abu2023web}. Despite this, less than 4\% of the top one million websites are fully accessible. Over 96\% contain detectable \ac{WCAG} failures, with an average of 51 errors per page \cite{webaimmillion2025}. Common issues include missing alt text (present on 56\% of home pages), low contrast, and poor form labeling \cite{audioeye2024}.
-
-On the other hand, rigorous testing is integral to ensuring reliability of web applications. For example, usability testing that involves having real users interacting with a live web application, allows for the identification of issues in action, enables for iterative feedback and a more realistic assessment of how they might experience the interface. Effective testing improves satisfaction, avoids rework, and ensures genuine inclusive design \cite{accessdesign2025}.
-
-Recent research highlights that most applications of \ac{AI} in web accessibility focus on generating alternative text for images, automating compliance checks, suggesting corrections, and creating alternative interfaces to improve access\cite{vera2025towards}. However, these approaches remain largely centered on white-box analysis and do not fully address the challenges of evaluating accessibility from the perspective of real user interaction. 
-
-While recent advances have demonstrated the potential of autonomous agents for usability testing\cite{lu2025uxagent}, mobile accessibility feature testing\cite{taeb2024axnav} and accessibility testing\cite{zhong2025screenaudit}, to our knowledge, these agents have not yet been applied to web accessibility evaluation in a multi-modal decision-based way. Bridging this gap offers the opportunity to deliver scalable, repeatable, and realistic assessments of how users with disabilities interact with web interfaces, potentially enhancing the detection and remediation of accessibility issues and making the evaluation process more efficient and comprehensive.
-
-\section{Automated Testing}
-
-Dynamic testing can help developers and stakeholders verify and validate that running software is working as expected\cite{vasquez2018continuous}. In this case, automated testing is the enabler for faster, more reliable and overall optimized testing. Automated testing leveraged by machine learning and \ac{AI} are increasingly becoming more popular and sophisticated, therefore using them in this scenario is a big step forward for ensuring accessibility.
-
-Intelligent agents can interact with web content without access to the underlying code, relying instead on the same content the final user is interacting with\cite{lanham2025ai, wang2024survey, lu2025uxagent}. They can also be adapted based on feedback, and can process rich multimodal inputs, namely screenshots and screen reader text, enabling them to reason about both the visual layout and the spoken feedback of the user interface simultaneously. They are also able to use different interaction techniques, like keyboard only, mouse only, etc. 
-
-Finally, LLM agents excel at open-ended reasoning and can provide qualitative insights, alongside quantitative logs. However, they require careful prompting and can be slower or less predictable.
-\vspace{-8pt}
-
-\section{Objectives}
-
-First, we aim to explore the use of perceptual filters and multimodal inputs, specifically applying blur to simulate different impairments; while also using screen reader outputs, to approximate the experience of real world users. 
-
-Additionally, we will analyze whether certain \ac{UI} elements become inaccessible or difficult to perceive under these simulated conditions, and investigate if common layout structures or design patterns can fail in these situations. Through this approach, we seek to identify not only the direct effects of visual filters on usability, but also the broader structural and behavioral implications for accessible web design.
-
 \section{System design}
 \subsection{Visual Filtering}
 
@@ -50,7 +25,15 @@ Simulating visual impairments through perceptual filters allows us to approximat
 
 These simulations (see figures. \ref{fig:glaucoma-filters} and \ref{fig:myopia-filters}) were implemented using the Visual Impairments Simulator Chrome extension \cite{visual_impairments_simulator}. While such tools provide a useful approximation of typical visual conditions, they are inherently limited: visual disabilities are highly individualized, and no filter can perfectly replicate the subjective visual experience of every user.
 
+% * The paper lacks an analysis of the target population and the specific visual impairments considered. The authors do not clearly articulate which types of visual impairments are modeled, their characteristics, or whether the chosen visual filtering techniques can adequately represent their impact on Web browsing.
+
+In light of these considerations, the beta testing of this agent will focus on a defined set of visual impairments. The prototype includes simulations of glaucoma (peripheral field loss and tunnel vision\cite{Cassel2021EyeBook}), diabetic retinopathy (scattered blind spots and patchy visual fields\cite{Cassel2021EyeBook}), cataracts (global blurriness and reduced contrast sensitivity\cite{Cassel2021EyeBook}), and myopia (blur at distance with varying levels of diopter correction\cite{Cassel2021EyeBook}). These conditions were selected as representative examples because they encompass distinct perceptual characteristics.
+
 In addition, experimenting with different viewports, font sizes, and other browser configurations\cite{chiou2024automatically} will be done to test how these factors affect usability.
+
+% TODO It is unclear how truthful these filters are with what impaired users perceive in reality. Hence, further validation is needed.
+% TODO There is no alignment or validation of the agent’s simulated behavior against real-world user data, raising concerns about the accuracy and reliability of the agent in reflecting the actual experiences of users with visual impairments.
+% ? I thought we had it as a part of this next paragraph
 
 Future work should involve collaboration with ophthalmologists and vision science experts to improve the clinical accuracy of these filters. Their insight can guide the calibration of filter parameters and help us design simulations that more closely resemble the lived experiences of users.
 
@@ -64,29 +47,42 @@ Future work should involve collaboration with ophthalmologists and vision scienc
 \label{fig:pipeline}
 \end{figure}
 
-
 The agent must capture what an assistive technology user would hear and do. For screen reader output, we can integrate a driver API, such as Guidepup\cite{guidepup2025} that programmatically controls VoiceOver (macOS)\cite{voiceover2024} or NVDA (Windows)\cite{nvda2024}.
 This driver issues the same keyboard commands a user would and exposes the spoken utterances\cite{guidepup2025}. The agent framework would invoke this API at each step and record the resulting string of text (including element role, name, state) as sensory input.
 
 For navigation logs, the agent can log focus events. As the agent presses Tab, arrow keys, click, Enter, etc., a browser automation framework, namely Playwright\cite{playwright2025}, Selenium\cite{garcia2024selenium}, or Kraken\cite{ravelo2023kraken}, can attach listeners to record each focus transition and action. This yields a sequence of elements visited in order\cite{ravelo2023kraken}. 
 These logs provide a trace of the navigation path for later analysis and execution. For instance, the log can reveal if an item was skipped or if the focus order was non-standard. Together, these multimodal streams visual focus shifts and spoken labels populate the agent's perception at each timestep. 
 
+% TODO Explain how issues are detected from agent logs — show concrete log features, detection rules/heuristics or classifiers, and example mappings (log → issue).
+
 The agent may optionally inspect the page for accessibility metadata, thereby having the ability to cross-check perception. This means reading the ARIA attributes for the current focused element. For instance, when an element is in focus, the agent can query its ARIA label, via the \ac{AOM} or other APIs. This is then compared to the other information (visual, audio). If the visible text of a button says “Search” but its ARIA label is “Submit,” that mismatch is noteworthy. Likewise, if the alt text of an image is "Company Logo" but the screen reader says "Image", it indicates a missing accessible name. This is useful for verifying consistency, which is one of the guidelines on \ac{WCAG} and IBM's\cite{ibm2025accessibility}. 
+
 
 \subsection{Decision and Action Module}
 
 Our approach consists of prompting the agent with a basic user goal. E.g. “given this screenshot and screen reader transcript, where is the 'Submit' button?”. The agent will then attempt to complete the task, using the screen reader and seeing through the visual impairment filter applied to the interface.
 
-Consider one scenario which may involve an \ac{AI} agent attempting to find and click a "Submit" button after filling out a form. With a glaucoma filter applied (see Fig. \ref{fig:glaucoma-filters}), the button may become difficult to distinguish due to peripheral blur or low contrast. The agent has to decide which interaction method works best (pointer, keyboard, etc) and execute the decision.
+Consider one scenario which may involve an \ac{AI} agent attempting to find and click a "Submit" button after filling out a form. With a glaucoma filter applied (see Fig. \ref{fig:glaucoma-filters}), the button may become difficult to.. distinguish due to peripheral blur or low contrast. The agent has to decide which interaction method works best (pointer, keyboard, etc) and execute the decision.
+
+% !\section{Compute Analysis}
+% TODO The paper could be improved by introducing further analysis and discussion on the system overhead, as deploying compute-intensive LLM-based AI agents requires much more resources than conventional static approaches.
+% TODO Include a system overhead / compute analysis: runtime, memory, cost, and comparison to conventional static tools; discuss scalability and deployment trade-offs.
+% TODO Clarify LMM/LLM choices and config: model(s) used, prompting/fine-tuning strategy, known failure modes, and any preliminary performance observations.
+
 
 \subsection{Workflow Definition}
 
 Each testing task needs to be defined in advance. This can be done either with a script or using natural language to define a goal. Then, the agent will execute said task in a closed loop that has a completion or failure condition. All in all, the loop can be structured in this way (see figure \ref{fig:pipeline}).
 
+% TODO Flesh out the experimental pipeline with concrete steps: site selection, task definitions, agent setup, data collection, metric computation, and analysis methods.
+
 \underline{Steps:} Perception (capture current \ac{UI} state: screenshot, screen-reader output, optionally \ac{AOM} information) $\rightarrow$ Decision (agent chooses next action, e.g., LLM generates plan and writes a rule-based script that framework follows) $\rightarrow$ Action (execute step) $\rightarrow$ Measure (log outputs, check goal, repeat if needed).
 
 
 \subsection{Metrics and Analysis}
+
+% TODO The paper does not specify which accessibility metrics are being tested, nor does it describe how these issues are detected from the agent’s interaction logs.
+% ? I thought we had it as a part of this next paragraph
 
 After execution is complete, some of the metrics we propose that the system displays are both classic usability and accessibility-specific. These include the agent's task success rate, efficiency (measured by completion time or number of actions), and the frequency of interaction errors, missed clicks or incorrect actions that require backtracking. 
 
@@ -102,4 +98,10 @@ We also explore whether these agents can surface accessibility problems that sta
 
 Finally, we investigate how combining simulated visual impairment filters with screen reader output affects the agent's ability to detect accessibility issues, and whether multi-modal input can uncover problems, say, missing alt text, that would not surface if using only visual filtering.
 
+% TODO To simulate the interaction of visually impaired users with web interfaces, the authors intend to use perceptual filters. Nevertheless, it is unclear how truthful these filters are with what impaired users perceive in reality. Hence, further validation is needed.
+% TODO  Describe how you will align/validate agent behavior against real users: datasets, sample sizes, metrics to compare, and statistical tests.
+
 To evaluate our approach, we will conduct experiments on a curated set of benchmark web pages, including public sites with documented accessibility issues. Inspired by Alameer et al.\cite{alameer2016detecting}, who compiled websites with internationalization challenges, we may extend our benchmarks to include similar cases. For each page, we will define representative tasks, and assess agent performance across different visual filters and input modalities. In future work, we plan to complement these quantitative results with qualitative feedback from accessibility experts and targeted user studies, to further validate the effectiveness and generalizability of agent-based accessibility testing.
+
+
+% TODO There is no preliminary evaluation of how well the LMM works in this case. In other words, the proposed pipeline for how the agent will work makes sense; however, how sure are the authors that the agent will work as expected, and that its use will make a difference in this case?
