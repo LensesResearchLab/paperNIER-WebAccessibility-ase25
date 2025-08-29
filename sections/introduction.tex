@@ -5,11 +5,12 @@ Web accessibility is central to inclusive software design, yet existing evaluati
 
 Although the access to information is a human right, the urgency of dynamic and human-centered accessibility evaluation is also supported by data. Approximately 2.2 billion people globally have some sort of visual impairment, including both near and distant vision issues \cite{who2023vision}. In Colombia, among the estimated 2.65 million people living with a disability by the DANE, approximately 57\% report that vision-related activities present the greatest challenges\cite{DANE2022}. In bigger countries like the USA, the CDC reports that, about 5.5\% of adults (nearly 19 million people) have blindness or serious difficulty seeing\cite{cdc2025disabilities}. Furthermore, screen reader users find that the most problematic items to interact with in a webpage are CAPTCHA, interactive elements, ambiguous links or buttons, unexpected screen changes, lack of keyboard support, among others\cite{webaimsurvey2025}. Even more tellingly, these users extract information from data visualizations 61\% less accurately and take 211\% more time compared to sighted users \cite{wobbrock2021assets}.
 
-We explore the possibility of approaching accessibility testing using autonomous \ac{AI} agents capable of interacting with websites while being exposed to simulated visual impairments. These agents are prompted with specific user tasks (e.g., locating a button, submitting a form) and attempt to complete them. The agents can also integrate outputs from assistive technologies, for example, capturing a screen reader's textual narration. 
+We explore the possibility of approaching accessibility testing using autonomous \ac{AI} agents capable of interacting with websites while being exposed to simulated visual impairments. These agents are prompted with specific user tasks (e.g., locating a button, submitting a form) and attempt to complete them. They can also integrate outputs from assistive technologies, for example, capturing a screen reader's textual narration. 
 
 This multi-modal input allows the agent to simulate how a user with various levels of visual impairment interacts with content, opening the door for dynamic automated testing other existing tools might be unable to uncover. For instance, detecting unuseful alt text, mislabeled controls or mismatches between rendered content and screen reader output. 
 
 This paper outlines our motivation, proposed approach, poses future evaluation research questions, and discusses implementation considerations for such a system.
+\vspace{-4pt}
 
 \section{Motivation}
 
@@ -26,8 +27,6 @@ Recent research highlights that most applications of \ac{AI} in web accessibilit
 % ? I thought this paragraph was doing that?
 
 While recent advances have demonstrated the potential of autonomous agents for usability testing\cite{lu2025uxagent}, mobile accessibility feature testing\cite{taeb2024axnav} and accessibility testing\cite{zhong2025screenaudit}, to our knowledge, these agents have not yet been applied to web accessibility evaluation in a multi-modal decision-based way. Bridging this gap offers the opportunity to deliver scalable, repeatable, and realistic assessments of how users with disabilities interact with web interfaces, potentially enhancing the detection and remediation of accessibility issues and making the evaluation process more efficient and comprehensive.
-
-
 
 \section{Objectives}
 
